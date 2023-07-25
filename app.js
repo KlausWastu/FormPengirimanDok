@@ -6,6 +6,7 @@ var logger = require("morgan");
 const flash = require("connect-flash");
 const session = require("express-session");
 
+const userRouter = require("./app/user/router");
 const dashboardRouter = require("./app/dashboard/router");
 var formulirRouter = require("./app/formulir/router");
 
@@ -33,7 +34,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", dashboardRouter);
+app.use("/", userRouter);
+app.use("/dashboard", dashboardRouter);
 app.use("/formulir", formulirRouter);
 
 // catch 404 and forward to error handler
