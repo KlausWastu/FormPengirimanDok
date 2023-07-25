@@ -1,0 +1,214 @@
+<%- include ../../partials/header.ejs %> <%- include ../../partials/navbar.ejs
+%> <%- include ../../partials/sidebar.ejs %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Laporan Penerimaan</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Halaman Utama</a></li>
+            <li class="breadcrumb-item">
+              <a href="/formulir">Form Pengiriman Dok</a>
+            </li>
+            <li class="breadcrumb-item active">Form </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Penambahan Formulir Pengiriman Dokumen</h3>
+          </div>
+            <form action="/formulir/create" method="POST">
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Kepada: </Label>
+                            <input type="text" name="kepada" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Dari: </Label>
+                            <input type="text" name="pembuat" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Bagian: </Label>
+                            <input type="text" name="bagian" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Tanggal: </Label>
+                            <div
+                          class="input-group date"
+                          id="reservationdate"
+                          data-target-input="nearest"
+                        >
+                          <input
+                            type="text"
+                            required
+                            class="form-control datetimepicker-input"
+                            data-target="#reservationdate"
+                            name="tanggal"
+                          />
+                          <div
+                            class="input-group-append"
+                            data-target="#reservationdate"
+                            data-toggle="datetimepicker"
+                          >
+                            <div class="input-group-text">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <Label>Jenis Dokumen: </Label>
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <div class="icheck d-inline">
+                                <input type="checkbox" id="kebijakan" value="Kebijakan SMT" />
+                                <input type="text" id="kebijakan1" name="kebijakan" hidden >
+                                <label>Kebijakan SMT</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="icheck d-inline">
+                                <input type="checkbox" id="rencana" value="Rencana SMT" />
+                                <input type="text" id="rencana1" name="rencana" hidden>
+                                <label>Rencana SMT</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="icheck d-inline">
+                                <input type="checkbox" id="prosedur" value="Prosedur SMT" />
+                                <input type="text" id="prosedur1" name="prosedur" hidden>
+                                <label>Prosedur SMT</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <div class="icheck d-inline">
+                                <input type="checkbox" id="sasaran" value="Sasaran SMT" />
+                                <input type="text" id="sasaran1" name="sasaran" hidden>
+                                <label>Sasaran SMT</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="icheck d-inline">
+                                <input type="checkbox" id="pedoman" value="Pedoman SMT" />
+                                <input type="text" id="pedoman1" name="pedoman" hidden>
+                                <label>Pedoman SMT</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="icheck d-inline">
+                                <input type="checkbox" id="dokpendukung"  />
+                                <label>Dokumen Pendukung Lainnya</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="dokumen" style="display: none;">
+                        <label >Dokumen Lainnya:</label>
+                        <input type="text" id="dokumen" name="dokpendukung" class="form-control">
+                    </div>
+                </div>
+              <div class="card-footer d-flex justify-content-end">
+                <!-- <a
+                  href="/laporPenerimaan/datapemberi"
+                  id="next"
+                  class="btn btn-primary"
+                  >Berikutnya</a
+                > -->
+                <!-- <button type="submit" id="next" class="btn btn-primary">
+                  Berikutnya
+                </button> -->
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<script>
+    // Memunculkan field dok pendukung lainnya
+    const dokpendukung = document.getElementById("dokpendukung")
+    const dok = document.getElementById("dokumen")
+    dokpendukung.onchange = function (){
+        if(this.checked){
+            dok.style.display = "block"
+        } else  {
+            dok.style.display = "none"
+        }
+    }
+
+    // Menangkap value checkbox
+    const kebijakan = document.getElementById("kebijakan")
+    const rencana = document.getElementById("rencana")
+    const prosedur = document.getElementById("prosedur")
+    const sasaran = document.getElementById("sasaran")
+    const pedoman = document.getElementById("pedoman")
+    kebijakan.onchange= function (){
+        if(this.checked){
+            document.getElementById("kebijakan1").value = kebijakan.value
+        } else {
+            document.getElementById("kebijakan1").value = ""
+        }
+    }
+    rencana.onchange= function (){
+        if(this.checked){
+            document.getElementById("rencana1").value = rencana.value
+        } else {
+            document.getElementById("rencana1").value = ""
+        }
+    }
+    prosedur.onchange= function (){
+        if(this.checked){
+            document.getElementById("prosedur1").value = prosedur.value
+        } else {
+            document.getElementById("prosedur1").value = ""
+        }
+    }
+    sasaran.onchange= function (){
+        if(this.checked){
+            document.getElementById("sasaran1").value = sasaran.value
+        } else {
+            document.getElementById("sasaran1").value = ""
+        }
+    }
+    pedoman.onchange= function (){
+        if(this.checked){
+            document.getElementById("pedoman1").value = pedoman.value
+        } else {
+            document.getElementById("pedoman1").value = ""
+        }
+    }
+    
+</script>
+<%- include ../../partials/footer.ejs %> <%- include ../../partials/java.ejs %>

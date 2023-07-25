@@ -1,0 +1,37 @@
+<table id="example2" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Dari</th>
+      <th>Kepada</th>
+      <th>Bagian</th>
+      <th>Tanggal</th>
+      <th>Jenis Dokumen</th>
+      <th>Status Baca</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i=0; i< form.length; i++) {%>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= form[i].dibuat %></td>
+      <td><%= form[i].kepada %></td>
+      <td><%= form[i].bagian %></td>
+      <td><%= form[i].tanggal %></td>
+      <td><%= form[i].jenisdok %></td>
+      <td>
+        <% if(form[i].statusbaca === false) {%>Belum dibaca <%} else {%> Dibaca
+        <%}%>
+      </td>
+      <td>
+        <a
+          href="/riwayatPenerimaan/preview/<%= form[i]._id %>"
+          class="btn btn-primary btn-sm"
+          >lihat</a
+        >
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
