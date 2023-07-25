@@ -3,6 +3,8 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const flash = require("connect-flash");
+const session = require("express-session");
 
 const dashboardRouter = require("./app/dashboard/router");
 var formulirRouter = require("./app/formulir/router");
@@ -12,6 +14,15 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(flash());
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {},
+  })
+);
 app.use(
   "/adminlte",
   express.static(path.join(__dirname, "/node_modules/admin-lte"))
