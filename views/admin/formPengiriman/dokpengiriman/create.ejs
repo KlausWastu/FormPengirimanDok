@@ -1,0 +1,112 @@
+<%- include ../../../partials/header.ejs %> <%- include ../../../partials/navbar.ejs
+%> <%- include ../../../partials/sidebar.ejs %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Tambah Dokumen</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/dashboard">Halaman Utama</a></li>
+            <li class="breadcrumb-item">
+              <a href="/formulir">Formulir</a>
+            </li>
+            <li class="breadcrumb-item active">Tambah Dokumen </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Tambah Dokumen</h3>
+          </div>
+            <form action="/dok/create" method="POST">
+              <div class="card-body">
+                  <div class="form-group">
+                      <Label>Nama Dokumen: </Label>
+                      <input type="text" name="namadok" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <Label>Kode Dokumen: </Label>
+                      <input type="text" name="kodedok" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <Label>Jumlah: </Label>
+                      <input type="text" name="jumlah" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <Label>Status Revisi: </Label>
+                      <input type="text" name="statusrevisi" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                      <Label>Salinan Nomor: </Label>
+                      <input type="text" name="salinanNo" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <Label>Tanggal Berlaku: </Label>
+                    <div
+                  class="input-group date"
+                  id="reservationdate"
+                  data-target-input="nearest"
+                >
+                  <input
+                    type="text"
+                    required
+                    class="form-control datetimepicker-input"
+                    data-target="#reservationdate"
+                    name="tglberlaku"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#reservationdate"
+                    data-toggle="datetimepicker"
+                  >
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+                  <div class="form-group" hidden>
+                      <Label>Formulir: </Label>
+                      <input type="text" name="formulir" id="formulir" class="form-control">
+                  </div>
+              <div class="card-footer d-flex justify-content-end">
+                <!-- <a
+                  href="/dok"
+                  id="next"
+                  class="btn btn-primary"
+                  type="submit"
+                  >Berikutnya</a
+                > -->
+                <button type="submit" id="next" class="btn btn-primary">
+                  Berikutnya
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<script>
+    const formid = localStorage.getItem("FormID")
+    document.getElementById("formulir").value = formid
+</script>
+<%- include ../../../partials/footer.ejs %> <%- include ../../../partials/java.ejs %>
