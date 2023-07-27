@@ -1,0 +1,104 @@
+<%- include ../../partials/header.ejs %> <%- include ../../partials/navbar.ejs
+%> <%- include ../../partials/sidebar.ejs %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Tambah Pengguna</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Halaman Utama</a></li>
+            <li class="breadcrumb-item">
+              <a href="/pengguna">Pengguna</a>
+            </li>
+            <li class="breadcrumb-item active">Tambah Pengguna </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Tambah Pengguna</h3>
+          </div>
+            <form action="/pengguna/create" method="POST">
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Email: </Label>
+                            <input type="text" name="email" class="form-control" placeholder="Masukan nama email">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Password: </Label>
+                            <input type="password" name="password" class="form-control" >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Nama: </Label>
+                            <input type="text" name="nama" class="form-control" placeholder="Masukan Nama">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <Label>Jabatan: </Label>
+                            <input type="text" name="jabatan" class="form-control" placeholder="Masukan Jabatan">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <Label>Role: </Label>
+                            <select name="role" id="role" class="form-control select2" required>
+                                <option selected >Pilih Role</option>
+                                <option value="user">User</option>
+                                <option value="sekdir">Sekertaris Direksi</option>
+                                <option value="dokon">Dokumen Kontrol</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex justify-content-end">
+                <button type="submit" id="save" class="btn btn-success" disabled>
+                  Simpan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<script>
+document.getElementById("role").onchange = function(){
+    if(document.getElementById("role").value !== "Pilih Role"){
+        document.getElementById("save").disabled = false
+    } else {
+        document.getElementById("save").disabled = true
+    }
+}
+</script>
+<%- include ../../partials/footer.ejs %> <%- include ../../partials/java.ejs %>
