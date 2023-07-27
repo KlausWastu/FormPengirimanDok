@@ -1,10 +1,12 @@
 var express = require("express");
 var router = express.Router();
-const { index } = require("./controller");
+const { index, viewtambahPengguna, tambahPengguna } = require("./controller");
+const { isLogin } = require("../middleware/auth");
 /* GET home page. */
+router.use(isLogin);
 router.get("/", index);
-// router.get("/", viewSignin);
-// router.post("/", actionSignin);
+router.get("/create", viewtambahPengguna);
+router.post("/create", tambahPengguna);
 // router.get("/create", viewCreate);
 // router.post("/create", actionCreate);
 
