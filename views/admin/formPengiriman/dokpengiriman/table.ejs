@@ -1,0 +1,28 @@
+<table id="example2" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama Dokumen</th>
+      <th>Kode Dokumen</th>
+      <th>Jumlah</th>
+      <th>Status Revisi</th>
+      <th>Tanggal Berlaku</th>
+      <th>Salinan No</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i=0; i< dok.length; i++) {%>
+    <tr>
+      <td><%= i+ 1%></td>
+      <td><%= dok[i].namadok %></td>
+      <td><%= dok[i].kodedok %></td>
+      <td><%= dok[i].jumlah %></td>
+      <td><%= dok[i].statusrevisi %></td>
+      <td><%= dok[i].tglberlaku %></td>
+      <td><%= dok[i].nosalinan %></td>
+      <td></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
