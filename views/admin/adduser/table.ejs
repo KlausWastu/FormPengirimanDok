@@ -29,6 +29,18 @@
       <td>
         <i class="fa fa-user-secret"><span class="ml-2">Admin</span></i>
       </td>
+      <%} else if(user[i].role==="sekdir"){%>
+      <td>
+        <i class="fa fa-user-secret"
+          ><span class="ml-2">Sekertaris Direksi</span></i
+        >
+      </td>
+      <%} else if(user[i].role==="dokon"){%>
+      <td>
+        <i class="fa fa-user-secret"
+          ><span class="ml-2">Dokumen Kontrol</span></i
+        >
+      </td>
       <% }%> <% if(user[i]?.status === "Y") {%>
       <td>
         <i class="fa fa-circle fa-sm" aria-hidden="true" style="color: #22db14">
