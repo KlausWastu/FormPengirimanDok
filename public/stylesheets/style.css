@@ -34,3 +34,12 @@
   color: #000;
   transition: translate 500ms, scale 500ms;
 }
+
+.select2-container .select2-selection--single {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: 40px;
+  user-select: none;
+  -webkit-user-select: none;
+}
