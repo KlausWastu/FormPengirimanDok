@@ -1,23 +1,41 @@
 const Form = require("./model");
+const Dok = require("./dok/model");
 module.exports = {
   index: async (req, res) => {
     try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+
+      const alert = { message: alertMessage, status: alertStatus };
+
       const form = await Form.find({ isdeleted: false });
       res.render("admin/formPengiriman/view_form", {
         title: "Formulir Pengiriman",
+        alert,
         form,
+        name: req.session.user.name,
       });
     } catch (err) {
-      console.log(err);
+      req.flash("alerMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/");
     }
   },
   viewCreate: async (req, res) => {
     try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+
+      const alert = { message: alertMessage, status: alertStatus };
       res.render("admin/formPengiriman/create", {
         title: "Tambah Form",
+        alert,
+        name: req.session.user.name,
       });
     } catch (err) {
-      console.log(err);
+      req.flash("alerMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/");
     }
   },
   actionCreate: async (req, res) => {
@@ -50,8 +68,37 @@ module.exports = {
         jenisdok: jenisDok,
       });
       await form.save();
+      const FormId = form._id;
+      req.flash("alertMessage", "Berhasil Membuat Formulir Pengiriman Dokumen");
+      req.flash("alertStatus", "success");
+      res.redirect("/dok?formId=" + FormId);
+    } catch (err) {
+      req.flash("alerMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/");
+    }
+  },
+  viewDok: async (req, res) => {
+    try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+
+      const alert = { message: alertMessage, status: alertStatus };
+      const { id } = req.params;
+      // const form = await Form.findOne({ _id: id });
+      const dok = await Dok.find({ formulir: id });
+      res.render("admin/formPengiriman/viewDok/viewdok", {
+        dok,
+        // form,
+        alert,
+        name: req.session.user.name,
+        title: "Dokumen",
+      });
     } catch (err) {
       console.log(err);
+      req.flash("alerMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/");
     }
   },
 };
