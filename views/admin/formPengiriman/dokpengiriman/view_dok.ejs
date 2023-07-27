@@ -1,0 +1,60 @@
+<%- include ../../../partials/header.ejs %> <%- include
+../../../partials/navbar.ejs %> <%- include ../../../partials/sidebar.ejs %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Form Dokumen untuk <%= form.kepada %> (<%= form.bagian %>)</h1>
+        </div>
+        <input type="text" id="FormID" value="<%=form._id %>" hidden />
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/formulir">Formulir</a></li>
+            <li class="breadcrumb-item active">Dokumen</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <%- include ../../../partials/message.ejs %>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header" style="width: 100%">
+              <h3 class="card-title" style="float: left">
+                <a href="/dok/create" class="btn btn-primary">
+                  <i class="nav-icon fa fa-plus"></i>
+                  Tambah
+                </a>
+              </h3>
+              <h3 class="card-title" style="float: right">
+                <a href="/formulir" class="btn btn-success"> Simpan </a>
+              </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body"><%- include ./table.ejs %></div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<script>
+  localStorage.setItem("FormID", FormID.value);
+</script>
+<%- include ../../../partials/footer.ejs %> <%- include
+../../../partials/java.ejs %>
