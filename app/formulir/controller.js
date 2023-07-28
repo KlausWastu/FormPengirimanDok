@@ -14,6 +14,7 @@ module.exports = {
         alert,
         form,
         name: req.session.user.name,
+        role: req.session.user.role,
       });
     } catch (err) {
       req.flash("alerMessage", `${err.message}`);
@@ -31,6 +32,7 @@ module.exports = {
         title: "Tambah Form",
         alert,
         name: req.session.user.name,
+        role: req.session.user.role,
       });
     } catch (err) {
       req.flash("alerMessage", `${err.message}`);
@@ -93,6 +95,7 @@ module.exports = {
         alert,
         name: req.session.user.name,
         title: "Dokumen",
+        role: req.session.user.role,
       });
     } catch (err) {
       console.log(err);

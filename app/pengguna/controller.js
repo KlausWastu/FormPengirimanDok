@@ -14,6 +14,7 @@ module.exports = {
         name: req.session.user.name,
         alert,
         user,
+        role: req.session.user.role,
       });
     } catch (err) {
       req.flash("alerMessage", `${err.message}`);
@@ -31,6 +32,7 @@ module.exports = {
         title: "Tambah Pengguna",
         name: req.session.user.name,
         alert,
+        role: req.session.user.role,
       });
     } catch (err) {
       console.log(err);
