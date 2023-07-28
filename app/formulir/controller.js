@@ -7,8 +7,14 @@ module.exports = {
       const alertStatus = req.flash("alertStatus");
 
       const alert = { message: alertMessage, status: alertStatus };
-
-      const form = await Form.find({ isdeleted: false });
+      const role = req.session.user.role;
+      let Role;
+      if (role === "sekdir") {
+        Role = "Sekertaris Direksi";
+      } else if (role === "dokon") {
+        Role === "Dokumen Kontrol";
+      }
+      const form = await Form.find({ isdeleted: false, dibuat: Role });
       res.render("admin/formPengiriman/view_form", {
         title: "Formulir Pengiriman",
         alert,
