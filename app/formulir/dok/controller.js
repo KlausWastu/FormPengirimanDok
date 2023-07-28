@@ -1,5 +1,9 @@
 const Form = require("../model");
 const Dok = require("./model");
+const path = require("path");
+const fs = require("fs");
+const config = require("../../../config");
+
 module.exports = {
   index: async (req, res) => {
     try {
@@ -53,20 +57,35 @@ module.exports = {
         formulir,
       } = req.body;
 
-      const dok = new Dok({
-        namadok,
-        kodedok,
-        jumlah,
-        statusrevisi,
-        tglberlaku,
-        nosalinan: salinanNo,
-        formulir,
+      let tmp_path = req.file.path;
+      let filename = req.file.originalname;
+      let target_path = path.resolve(
+        config.rootPath,
+        `public/upload/${filename}`
+      );
+
+      const src = fs.createReadStream(tmp_path);
+      const dest = fs.createWriteStream(target_path);
+
+      src.pipe(dest);
+      src.on("end", async () => {
+        const dok = new Dok({
+          namadok,
+          kodedok,
+          jumlah,
+          statusrevisi,
+          tglberlaku,
+          nosalinan: salinanNo,
+          dokumen: filename,
+          formulir,
+        });
+        await dok.save();
+        req.flash("alertMessage", "Berhasil Menambahkan Dokumen");
+        req.flash("alertStatus", "success");
+        res.redirect("/dok?formId=" + formulir);
       });
-      await dok.save();
-      req.flash("alertMessage", "Berhasil Menambahkan Dokumen");
-      req.flash("alertStatus", "success");
-      res.redirect("/dok?formId=" + formulir);
     } catch (err) {
+      console.log(err);
       req.flash("alerMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
       res.redirect("/");
