@@ -22,8 +22,7 @@
         role="menu"
         data-accordion="false"
       >
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+        <% if(role === "admin") {%>
         <li class="nav-header">Dokumen</li>
         <li class="nav-item">
           <a href="/formulir" class="nav-link">
@@ -38,6 +37,23 @@
             <p>Pengguna</p>
           </a>
         </li>
+        <% } else if(role=== "user") {%>
+        <li class="nav-header">Dokumen</li>
+        <li class="nav-item">
+          <a href="/formuser" class="nav-link">
+            <i class="nav-icon far fa-calendar-alt"></i>
+            <p>Form Pengiriman</p>
+          </a>
+        </li>
+        <% } else if(role === "sekdir"|| role === "dokon") { %>
+        <li class="nav-header">Dokumen</li>
+        <li class="nav-item">
+          <a href="/formulir" class="nav-link">
+            <i class="nav-icon far fa-calendar-alt"></i>
+            <p>Form Pengiriman</p>
+          </a>
+        </li>
+        <%}%>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
