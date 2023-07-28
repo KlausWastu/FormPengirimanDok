@@ -11,6 +11,7 @@ const dashboardRouter = require("./app/dashboard/router");
 var formulirRouter = require("./app/formulir/router");
 var dokumenRouter = require("./app/formulir/dok/router");
 const penggunaRouter = require("./app/pengguna/router");
+const formuserRouter = require("./app/formuliruser/router");
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use("/dashboard", dashboardRouter);
 app.use("/formulir", formulirRouter);
 app.use("/dok", dokumenRouter);
 app.use("/pengguna", penggunaRouter);
+app.use("/formuser", formuserRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
