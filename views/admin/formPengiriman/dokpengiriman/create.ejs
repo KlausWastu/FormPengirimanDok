@@ -31,23 +31,23 @@
           <div class="card-header">
             <h3 class="card-title">Tambah Dokumen</h3>
           </div>
-            <form action="/dok/create" method="POST">
+            <form action="/dok/create" method="POST" enctype="multipart/form-data">
               <div class="card-body">
                   <div class="form-group">
                       <Label>Nama Dokumen: </Label>
-                      <input type="text" name="namadok" class="form-control">
+                      <input type="text" name="namadok" class="form-control" required>
                   </div>
                   <div class="form-group">
                       <Label>Kode Dokumen: </Label>
-                      <input type="text" name="kodedok" class="form-control">
+                      <input type="text" name="kodedok" class="form-control" required>
                   </div>
                   <div class="form-group">
                       <Label>Jumlah: </Label>
-                      <input type="text" name="jumlah" class="form-control">
+                      <input type="text" name="jumlah" class="form-control" required>
                   </div>
                   <div class="form-group">
                       <Label>Status Revisi: </Label>
-                      <input type="text" name="statusrevisi" class="form-control">
+                      <input type="text" name="statusrevisi" class="form-control" required>
                   </div>
 
                   <div class="form-group">
@@ -57,27 +57,48 @@
                   <div class="form-group">
                     <Label>Tanggal Berlaku: </Label>
                     <div
-                  class="input-group date"
-                  id="reservationdate"
-                  data-target-input="nearest"
-                >
-                  <input
-                    type="text"
-                    required
-                    class="form-control datetimepicker-input"
-                    data-target="#reservationdate"
-                    name="tglberlaku"
-                  />
-                  <div
-                    class="input-group-append"
-                    data-target="#reservationdate"
-                    data-toggle="datetimepicker"
-                  >
-                    <div class="input-group-text">
-                      <i class="fa fa-calendar"></i>
+                      class="input-group date"
+                      id="reservationdate"
+                      data-target-input="nearest"
+                    >
+                      <input
+                        type="text"
+                        required
+                        class="form-control datetimepicker-input"
+                        data-target="#reservationdate"
+                        name="tglberlaku"
+                      />
+                      <div
+                        class="input-group-append"
+                        data-target="#reservationdate"
+                        data-toggle="datetimepicker"
+                      >
+                        <div class="input-group-text">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <div class="form-group">
+                    <label >File:</label>
+                    
+                      <input
+                        type="file"
+                        name="uploaddokumen"
+                        class="form-control"
+                        id="uploaddokumen"
+                        placeholder="Masukan dokumen"
+                        accept="application/pdf"
+                        required
+                        style="height: 43px;"
+                      />
+                      <span
+                        style="font-size: 12px; "
+                        id="formatFile"
+                      >
+                        <i>(*) Fle(PDF) Max Size: 2 Mb</i>
+                      </span>
+                  </div>
                   <div class="form-group" hidden>
                       <Label>Formulir: </Label>
                       <input type="text" name="formulir" id="formulir" class="form-control">
