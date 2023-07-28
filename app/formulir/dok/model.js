@@ -20,6 +20,9 @@ let PengirimanDokSchema = mongoose.Schema(
       type: String,
       require: [true | "Perihal harus di isi"],
     },
+    dokumen: {
+      type: String,
+    },
     formulir: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Formulir",
