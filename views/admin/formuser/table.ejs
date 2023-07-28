@@ -21,11 +21,14 @@
         <%}%>
       </td>
       <td>
-        <a
-          href="/formuser/viewDok/<%= form[i]._id %>"
-          class="btn btn-primary btn-sm"
-          >lihat</a
+        <form
+          action="/formuser/view/<%= form[i]._id %>?statusbaca=true&_method=PUT"
+          method="POST"
         >
+          <a href="/formuser/viewDok/<%= form[i]._id %>">
+            <button class="btn btn-primary btn-sm">lihat</button>
+          </a>
+        </form>
       </td>
     </tr>
     <% } %>
