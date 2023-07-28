@@ -85,11 +85,11 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
       const { id } = req.params;
-      // const form = await Form.findOne({ _id: id });
+      const form = await Form.findOne({ _id: id });
       const dok = await Dok.find({ formulir: id });
       res.render("admin/formPengiriman/viewDok/viewdok", {
         dok,
-        // form,
+        form,
         alert,
         name: req.session.user.name,
         title: "Dokumen",
