@@ -17,7 +17,8 @@ module.exports = {
       } else if (
         req.session.user.role === "admin" ||
         req.session.user.role === "sekdir" ||
-        req.session.user.role === "dokon"
+        req.session.user.role === "dokon" ||
+        req.session.user.role === "user"
       ) {
         res.redirect("/dashboard");
       }
@@ -73,5 +74,9 @@ module.exports = {
       req.flash("alertStatus", "danger");
       res.redirect("/");
     }
+  },
+  logout: async (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
   },
 };
