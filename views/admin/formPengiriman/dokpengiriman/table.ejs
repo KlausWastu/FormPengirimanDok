@@ -21,7 +21,11 @@
       <td><%= dok[i].statusrevisi %></td>
       <td><%= dok[i].tglberlaku %></td>
       <td><%= dok[i].nosalinan %></td>
-      <td></td>
+      <td>
+        <a href="upload/<%= dok[i].dokumen %>" target="_blank">
+          <%= dok[i].dokumen%>
+        </a>
+      </td>
     </tr>
     <% } %>
   </tbody>
