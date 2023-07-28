@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const flash = require("connect-flash");
 const session = require("express-session");
+const methodOverride = require("method-override");
 
 const userRouter = require("./app/user/router");
 const dashboardRouter = require("./app/dashboard/router");
@@ -16,6 +17,7 @@ const formuserRouter = require("./app/formuliruser/router");
 var app = express();
 
 // view engine setup
+app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(flash());
