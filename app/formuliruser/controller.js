@@ -47,4 +47,30 @@ module.exports = {
       res.redirect("/");
     }
   },
+  actioStatusBaca: async (req, res) => {
+    try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+
+      const alert = { message: alertMessage, status: alertStatus };
+      const { id } = req.params;
+      const { statusbaca } = req.query;
+      await Form.findOneAndUpdate({ _id: id }, { statusbaca });
+      const form = await Form.findOne({ _id: id });
+      const dok = await Dok.find({ formulir: id });
+      res.render("admin/formuser/dok/dokumenuser", {
+        dok,
+        form,
+        alert,
+        name: req.session.user.name,
+        title: "Dokumen",
+        role: req.session.user.role,
+      });
+    } catch (err) {
+      console.log(err);
+      req.flash("alerMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/");
+    }
+  },
 };
