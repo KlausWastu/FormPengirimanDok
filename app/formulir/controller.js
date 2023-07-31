@@ -1,5 +1,7 @@
 const Form = require("./model");
 const Dok = require("./dok/model");
+const User = require("../user/model");
+
 module.exports = {
   index: async (req, res) => {
     try {
@@ -7,14 +9,12 @@ module.exports = {
       const alertStatus = req.flash("alertStatus");
 
       const alert = { message: alertMessage, status: alertStatus };
-      const role = req.session.user.role;
-      let Role;
-      if (role === "sekdir") {
-        Role = "Sekertaris Direksi";
-      } else if (role === "dokon") {
-        Role === "Dokumen Kontrol";
-      }
-      const form = await Form.find({ isdeleted: false, dibuat: Role });
+      const name = req.session.user.name;
+      const form = await Form.find({
+        isdeleted: false,
+        "dibuat.name": name,
+      });
+      console.log("Form >> ", form);
       res.render("admin/formPengiriman/view_form", {
         title: "Formulir Pengiriman",
         alert,
@@ -34,9 +34,12 @@ module.exports = {
       const alertStatus = req.flash("alertStatus");
 
       const alert = { message: alertMessage, status: alertStatus };
+      let usr = req.session.user.id;
+      const user = await User.findOne({ _id: usr });
       res.render("admin/formPengiriman/create", {
         title: "Tambah Form",
         alert,
+        user,
         name: req.session.user.name,
         role: req.session.user.role,
       });
@@ -49,7 +52,8 @@ module.exports = {
   actionCreate: async (req, res) => {
     try {
       const {
-        pembuat,
+        jabatan,
+        nama,
         kepada,
         bagian,
         tanggal,
@@ -69,7 +73,7 @@ module.exports = {
         dokpendukung,
       ].filter(Boolean);
       const form = new Form({
-        dibuat: pembuat,
+        dibuat: { name: nama, jabatan },
         kepada,
         bagian,
         tanggal,
@@ -104,7 +108,6 @@ module.exports = {
         role: req.session.user.role,
       });
     } catch (err) {
-      console.log(err);
       req.flash("alerMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
       res.redirect("/");
