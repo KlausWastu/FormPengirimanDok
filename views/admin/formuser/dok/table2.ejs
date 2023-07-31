@@ -1,0 +1,43 @@
+<table id="example2" class="table table-bordered table-striped">
+  <strong>
+    <u>Catatan:</u> <br />
+    <i
+      >Setelah diterima, formulir ini harap segera dikembalikan. <br />
+      Untuk dokumen yang <u>direvisi</u>, formulir ini harap dikembalikan
+      bersama dengan dokumen <u>KADALUWARSA</u> untuk dimusnahkan.</i
+    >
+  </strong>
+  <thead>
+    <tr>
+      <th>Dikirim oleh :</th>
+      <th>Jabatan :</th>
+      <th>Tanggal :</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= form.dibuat.name %></td>
+      <td><%= form.dibuat.jabatan %></td>
+      <td><%= form.tanggal %></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr style="height: 15px"></tr>
+  </tbody>
+  <tr></tr>
+  <thead>
+    <tr>
+      <th>Diterima oleh :</th>
+      <th>Jabatan :</th>
+      <th>Tanggal :</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= form.kepada %></td>
+      <td><%= form.bagian %></td>
+      <td><%= form.tglterima %></td>
+    </tr>
+  </tbody>
+</table>
