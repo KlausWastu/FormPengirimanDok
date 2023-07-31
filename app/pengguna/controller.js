@@ -45,7 +45,6 @@ module.exports = {
     try {
       const { email, password, nama, jabatan, role } = req.body;
       const user = await Pengguna.findOne({ email });
-      console.log("User >> ", user);
       if (user) {
         req.flash("alertMessage", "Email sudah ada");
         req.flash("alertStatus", "success");
@@ -80,6 +79,21 @@ module.exports = {
       req.flash("alerMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
       res.redirect("/");
+    }
+  },
+  status: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.query;
+      const user = await Pengguna.findOne({ _id: id });
+      await Pengguna.findOneAndUpdate({ _id: id }, { status });
+      req.flash("alertMessage", `Status ${user.name} telah diubah`);
+      req.flash("alertStatus", "success");
+      res.redirect("/pengguna");
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/pengguna");
     }
   },
 };
