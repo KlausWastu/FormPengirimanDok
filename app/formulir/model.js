@@ -14,6 +14,9 @@ let formPengirimanDokSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    tglterima: {
+      type: String,
+    },
     statusbaca: {
       type: Boolean,
       default: false,
