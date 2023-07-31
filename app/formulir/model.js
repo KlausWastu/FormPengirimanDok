@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const mongoose_delete = require("mongoose-delete");
 let formPengirimanDokSchema = mongoose.Schema(
   {
-    dibuat: { type: String },
+    dibuat: {
+      name: { type: String },
+      jabatan: { type: String },
+    },
     kepada: { type: String },
     bagian: { type: String },
     tanggal: { type: String },
