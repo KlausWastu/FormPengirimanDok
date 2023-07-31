@@ -62,7 +62,7 @@
         >
         <% if(user[i].status === "Y" && user[i].role !== "admin") {%>
         <form
-          action="/tambahPengguna/status/<%= user[i]._id %>?status=N&_method=PUT"
+          action="/pengguna/status/<%= user[i]._id %>?status=N&_method=PUT"
           method="POST"
           style="display: inline-block"
         >
@@ -76,7 +76,7 @@
         </form>
         <% } else if(user[i].role !== "admin") {%>
         <form
-          action="/tambahPengguna/status/<%= user[i]._id %>?status=Y&_method=PUT"
+          action="/pengguna/status/<%= user[i]._id %>?status=Y&_method=PUT"
           method="POST"
           style="display: inline-block"
         >
