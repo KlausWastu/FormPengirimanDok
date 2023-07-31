@@ -43,10 +43,16 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <Label>Dari: </Label>
-                            <input type="text" name="pembuat" class="form-control">
+                            <input type="text" name="jabatan" class="form-control" value="<%= user.jabatan%>">
                         </div>
                     </div>
-                </div>
+                    <div class="col-12 col-md-6" hidden>
+                        <div class="form-group">
+                            <Label>Nama: </Label>
+                            <input type="text" name="nama" class="form-control" value="<%= user.name %>">
+                        </div>
+                    </div>
+                  </div>
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
