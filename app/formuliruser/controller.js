@@ -55,7 +55,14 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const { id } = req.params;
       const { statusbaca } = req.query;
-      await Form.findOneAndUpdate({ _id: id }, { statusbaca });
+      // Tanggal
+      const currDate = new Date();
+      const tahun = currDate.getFullYear();
+      const Tanggal = String(currDate.getDate()).padStart(2, "0");
+      const bulan = String(currDate.getMonth() + 1).padStart(2, "0");
+      const date = Tanggal + "/" + bulan + "/" + tahun;
+
+      await Form.findOneAndUpdate({ _id: id }, { statusbaca, tglterima: date });
       const form = await Form.findOne({ _id: id });
       const dok = await Dok.find({ formulir: id });
       res.render("admin/formuser/dok/dokumenuser", {
