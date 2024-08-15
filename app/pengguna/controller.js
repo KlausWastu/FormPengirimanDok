@@ -96,4 +96,40 @@ module.exports = {
       res.redirect("/pengguna");
     }
   },
+  viewEdit: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await Pengguna.findOne({ _id: id });
+      res.render("admin/adduser/edit", {
+        title: "Edit pengguna",
+        name: req.session.user.name,
+        role: req.session.user.role,
+        user,
+      });
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/dashboardUser");
+    }
+  },
+  actionEdit: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await Pengguna.findOne({ _id: id });
+      const { email, password, nama, jabatan } = req.body;
+      let hashpass = await bcrypt.hash(password, 10);
+      await Pengguna.findOneAndUpdate(
+        { _id: id },
+        { email, password: hashpass, name: nama, jabatan }
+      );
+      req.flash("alertMessage", `Pengguna (${user.email}) telah diperbarui`);
+      req.flash("alertStatus", "success");
+      res.redirect("/pengguna");
+    } catch (err) {
+      console.log(err);
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/pengguna");
+    }
+  },
 };
